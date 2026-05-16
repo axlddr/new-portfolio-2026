@@ -1,0 +1,29 @@
+/* ============================================
+   NOISE OVERLAY  — z 0, below grid and content
+   ============================================ */
+:root {
+  --noise-opacity: 0.6;
+  --noise-size: 250px;
+}
+
+/* Shared noise mixin — used by body::before and .noise */
+:root {
+  --noise-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Add to any element to apply the noise texture */
+.noise {
+  isolation: isolate;
+}
+
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: var(--noise-opacity);
+  background-image: var(--noise-bg);
+  background-size: var(--noise-size) var(--noise-size);
+  background-repeat: repeat;
+}

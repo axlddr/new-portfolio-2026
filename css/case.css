@@ -1,0 +1,224 @@
+/* ============================================
+   CASE STUDY BLOCKS
+   All repeatable block types rendered by case-parser.js.
+   Re-uses .block, .label, .h1, .h2, .h3, etc. from global.css.
+   ============================================ */
+
+/* ----------------------------------------
+   FRAME MODIFIER — tighter gap for case pages
+   ---------------------------------------- */
+.frame--case {
+  gap: 150px;
+}
+
+/* Blocks inside a case page: no border, vertical stack with 48px gap */
+.frame--case .block {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+/* Padding: 80px top, 64px bottom — defines header height */
+.site-header--case > .container {
+  padding-top: 80px;
+  padding-bottom: 48px;
+}
+
+.case__header-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Hero description text width */
+.frame--case .hero__desc {
+  max-width: 680px;
+}
+
+/* ----------------------------------------
+   HERO META  — horizontal row of meta items
+   inside the .site-header hero (mirrors about__metrics)
+   ---------------------------------------- */
+.case__hero-meta {
+  display: flex;
+  gap: var(--sp-32);
+  flex-wrap: wrap;
+}
+
+.case__hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.case__hero-meta-item dd {
+  font-size: var(--fs-text);
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* ----------------------------------------
+   COVER IMAGE  — first item in main frame
+   ---------------------------------------- */
+.case__cover {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.case__cover img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* ----------------------------------------
+   FIGURE + CAPTION  — wraps each [image] item
+   ---------------------------------------- */
+.case__figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+/* FULL-WIDTH IMAGE BLOCK  — [image] item */
+.case__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  cursor: zoom-in;
+}
+
+.case__caption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--color-ink-label);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+/* ----------------------------------------
+   LIGHTBOX
+   ---------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-32);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-12);
+  max-width: min(1400px, 100%);
+  transform: scale(0.94);
+  transition: transform 260ms ease;
+}
+
+.lightbox.is-open .lightbox__figure {
+  transform: scale(1);
+}
+
+.lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lightbox__caption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: var(--sp-24);
+  right: var(--sp-24);
+  color: #fff;
+  opacity: 0.55;
+  padding: var(--sp-8);
+  transition: opacity 150ms ease;
+}
+
+.lightbox__close:hover { opacity: 1; }
+
+/* ----------------------------------------
+   SPLIT LAYOUT  —  1fr  |  2fr
+   Used by [split-title] and [split-text]
+   ---------------------------------------- */
+.case__split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.case__split-left {
+  padding-right: 48px;
+}
+
+.case__split-right {
+  font-size: var(--fs-text);
+  line-height: 1.25;
+  color: var(--color-ink-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
+  max-width: 680px;
+}
+
+/* ----------------------------------------
+   RICH TEXT — bullet list
+   ---------------------------------------- */
+.case__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.case__list li {
+  display: flex;
+  gap: var(--sp-8);
+}
+
+.case__list li::before {
+  content: "—";
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------
+   RESPONSIVE
+   ---------------------------------------- */
+@media (max-width: 820px) {
+  .case__cover img { aspect-ratio: 4 / 3; }
+
+  .case__split { grid-template-columns: 1fr; }
+  .case__split-left {
+    border-right: none;
+    border-bottom: var(--border);
+    padding-bottom: var(--sp-24);
+  }
+}

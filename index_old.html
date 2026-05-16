@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axel Dadure — Senior Product Designer</title>
+  <meta name="description" content="Senior product designer. Je crée des expériences simples pour des problèmes compliqués depuis 2017." />
+
+  <!-- Prevent flash of wrong theme -->
+  <script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;})();</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/noise.css" />
+  <link rel="stylesheet" href="css/cursor-glow.css" />
+</head>
+<body class="page">
+  <!--
+  <div class="col-grid" aria-hidden="true">
+    <div class="col-grid__col"></div>
+    <div class="col-grid__col"></div>
+    <div class="col-grid__col"></div>
+  </div>
+  -->
+  <main class="container">
+    <div class="frame">
+
+      <!-- NAV -->
+      <header class="nav noise">
+        <a href="index.html" class="nav__brand">
+          <svg class="nav__brand-mark" width="24" height="16" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+            <rect y="8" width="8" height="8" rx="2" fill="var(--color-accent)"/>
+            <rect x="8" width="8" height="8" rx="2" fill="var(--color-accent)"/>
+            <rect x="16" y="8" width="8" height="8" rx="2" fill="var(--color-accent)"/>
+          </svg>
+          <span>Axel Dadure</span>
+        </a>
+        <div class="nav__right">
+          <nav class="nav__links" aria-label="Principale">
+            <a class="nav__link" href="work.html" aria-current="page">Projets</a>
+            <a class="nav__link" href="about.html">A propos</a>
+          </nav>
+          <button class="theme-toggle" aria-label="Passer en mode sombre">Dark</button>
+        </div>
+      </header>
+
+      <!-- BLOCK 1 : Hero + Meta -->
+      <div class="block col-overlay">
+
+        <section class="hero">
+          <div class="hero__content">
+            <h1 class="hero__title h1">
+              Je crée des expériences <span>simples</span> pour des problèmes <span>compliqués</span> depuis 2017.
+            </h1>
+            <p class="hero__desc">
+              Avec un background technique, je me spécialise dans la conception d'interfaces précises, efficaces et claires. Quelque chose sur les design systems, et quelque chose d'autre…
+            </p>
+          </div>
+          <div class="hero__spacer"></div>
+        </section>
+
+        <section class="meta" aria-label="Profil">
+          <div class="meta__cell">
+            <div class="meta__cell-inner">
+              <span class="meta__label label">Level</span>
+              <span class="meta__divider"></span>
+              <span class="meta__value">Senior</span>
+            </div>
+          </div>
+          <div class="meta__cell">
+            <div class="meta__cell-inner">
+              <span class="meta__label label">Domain</span>
+              <span class="meta__divider"></span>
+              <span class="meta__value">Product</span>
+            </div>
+          </div>
+          <div class="meta__cell meta__cell--accent">
+            <div class="meta__cell-inner">
+              <span class="meta__label label">Role</span>
+              <span class="meta__divider"></span>
+              <span class="meta__value">Designer</span>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /BLOCK 1 -->
+
+      <!-- BLOCK 2 : Derniers projets -->
+      <div class="block">
+
+        <div class="section-head">
+          <h2 class="h2">Derniers projets</h2>
+        </div>
+
+        <div class="projects col-overlay">
+          <article class="project">
+            <div class="project__info">
+              <div class="project__header">
+                <span class="project__num label">01</span>
+                <h3 class="project__title h3">Refonte du Social Listening</h3>
+              </div>
+              <p class="project__desc">
+                Comment organiser la refonte d'une fonctionnalité clé dans une web-app B2B pour s'adresser à de nouveaux utilisateurs.
+              </p>
+              <ul class="tags" aria-label="Tags">
+                <li class="tag">SaaS</li>
+                <li class="tag">Refonte</li>
+                <li class="tag">Design system</li>
+              </ul>
+                <div class="project__meta-item">
+                  <dt class="project__meta-label label">Metric</dt>
+                  <dd class="project__meta-value">Activation</dd>
+                </div>
+                <div class="project__meta-item">
+                  <dt class="project__meta-label label">Impact</dt>
+                  <dd class="project__meta-value project__meta-value--accent">+32% d'activation</dd>
+                </div>
+              </dl>
+              <a href="cases/agora-social-listening-revamp/" class="project__cta">Lire l'étude de cas <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <a href="cases/agora-social-listening-revamp/" class="project__media">
+              <div class="project__media-inner">
+                <img src="cases/agora-social-listening-revamp/img/header.png" alt="Refonte du Social Listening — aperçu" />
+              </div>
+            </a>
+          </article>
+          <article class="project">
+            <div class="project__info">
+              <div class="project__header">
+                <span class="project__num label">02</span>
+                <h3 class="project__title h3">Design system Agorapulse</h3>
+              </div>
+              <p class="project__desc">
+                Mise en place d'un design system unifié pour aligner produit, marketing et documentation sur un langage visuel commun.
+              </p>
+              <ul class="tags" aria-label="Tags">
+                <li class="tag">Design system</li>
+                <li class="tag">SaaS</li>
+                <li class="tag">Tokens</li>
+              </ul>
+              <dl class="project__meta">
+                <div class="project__meta-item">
+                  <dt class="project__meta-label label">Entreprise</dt>
+                  <dd class="project__meta-value">Agorapulse</dd>
+                </div>
+                <div class="project__meta-item">
+                  <dt class="project__meta-label label">Metric</dt>
+                  <dd class="project__meta-value">Vélocité</dd>
+                </div>
+                <div class="project__meta-item">
+                  <dt class="project__meta-label label">Impact</dt>
+                  <dd class="project__meta-value project__meta-value--accent">2× plus rapide en delivery</dd>
+                </div>
+              </dl>
+              <a href="#" class="project__cta">Lire l'étude de cas <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <div class="project__media" aria-hidden="true">
+              <div class="project__media-inner">
+              <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aperçu projet">
+                <rect width="800" height="500" fill="#EDEAE5"/>
+                <rect x="40" y="40" width="220" height="200" rx="8" fill="#FFFFFF"/>
+                <rect x="280" y="40" width="220" height="200" rx="8" fill="#1A1916"/>
+                <rect x="520" y="40" width="220" height="200" rx="8" fill="#9F181A"/>
+                <rect x="40" y="260" width="700" height="200" rx="8" fill="#FFFFFF"/>
+                <rect x="60" y="280" width="120" height="12" rx="2" fill="#1A1916"/>
+                <rect x="60" y="304" width="200" height="8" rx="2" fill="#B8B5AE"/>
+                <rect x="60" y="320" width="180" height="8" rx="2" fill="#B8B5AE"/>
+                <rect x="60" y="400" width="100" height="32" rx="4" fill="#9F181A"/>
+              </svg>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <a class="row-link" href="work.html">Voir plus (3) <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+      </div><!-- /BLOCK 2 -->
+
+      <!-- BLOCK 3 : A propos -->
+      <div class="block">
+
+        <div class="section-head">
+          <span class="section-head__eyebrow">— Profil</span>
+          <h2 class="h1">A propos</h2>
+        </div>
+
+        <section class="about">
+          <div class="about__media">
+            <div class="about__media-placeholder" role="img" aria-label="Portrait Axel Dadure"></div>
+          </div>
+          <div class="about__text">
+            <p>
+              Paragraphe rapide. Comment organiser la refonte d'une fonctionnalité clé dans une web-app B2B pour s'adresser à de nouveaux utilisateurs. Comment organiser la refonte d'une fonctionnalité clé dans une web-app B2B pour s'adresser à de nouveaux utilisateurs. Comment organiser la refonte d'une fonctionnalité clé dans une web-app B2B pour s'adresser à de nouveaux utilisateurs.
+            </p>
+          </div>
+        </section>
+
+        <a class="row-link" href="about.html">En savoir plus <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+      </div><!-- /BLOCK 3 -->
+
+    </div>
+  </main>
+
+  <script src="js/cursor-glow.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>

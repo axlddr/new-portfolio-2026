@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(not exist *)",
+      "Bash(mkdir -p \"C:/Users/keylo/Documents/Crea/SIte Perso/axel-dadure-2026/.claude\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(node server.js)",
+      "Bash(curl -s http://localhost:5173)"
+    ]
+  }
+}

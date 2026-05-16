@@ -1,0 +1,10 @@
+{
+  "name": "axel-dadure-2026",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portfolio Axel Dadure — HTML/CSS/JS vanilla",
+  "scripts": {
+    "dev": "node server.js",
+    "live": "npx --yes live-server --port=5173 --no-browser ."
+  }
+}
