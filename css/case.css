@@ -8,7 +8,28 @@
    FRAME MODIFIER — tighter gap for case pages
    ---------------------------------------- */
 .frame--case {
-  gap: 150px;
+  gap: 120px;
+}
+
+/* Text elements: 800px centered — images stay full width */
+.frame--case .hero__content,
+.frame--case .section-head,
+.frame--case .case__split {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Hero content: collapse gap, set explicit spacing */
+.frame--case .hero__content {
+  gap: 0;
+}
+.frame--case .hero__content > * + * {
+  margin-top: var(--sp-16);
+}
+.frame--case .case__hero-meta {
+  margin-top: var(--sp-32);
 }
 
 /* Blocks inside a case page: no border, vertical stack with 48px gap */
@@ -16,7 +37,7 @@
   border: none;
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 80px;
 }
 
 /* Padding: 80px top, 64px bottom — defines header height */
@@ -37,9 +58,9 @@
    inside the .site-header hero (mirrors about__metrics)
    ---------------------------------------- */
 .case__hero-meta {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-32);
-  flex-wrap: wrap;
 }
 
 .case__hero-meta-item {
@@ -169,17 +190,19 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-16);
-  max-width: 700px;
 }
 
 .case__split-right {
   font-size: var(--fs-text);
   line-height: var(--lh-text);
   color: var(--color-ink-secondary);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-16);
   width: 100%;
+}
+
+/* 16px between any consecutive block children in text content areas */
+.case__split-right > * + *,
+.hero__desc > * + * {
+  margin-top: var(--sp-16);
 }
 
 /* ----------------------------------------
@@ -192,18 +215,12 @@
 }
 
 .case__list li {
-  display: flex;
-  gap: var(--sp-8);
-}
-
-.case__list li::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--color-ink);
-  flex-shrink: 0;
-  margin-top: 0.45em;
+  background-color: color-mix(in srgb, var(--color-ink) 5%, var(--color-bg));
+  border-left: 4px solid var(--color-accent);
+  padding: 12px;
+  border-radius: 4px;
+  font-size: var(--fs-text);
+  line-height: var(--lh-text);
 }
 
 /* ----------------------------------------
@@ -275,5 +292,4 @@
    ---------------------------------------- */
 @media (max-width: 820px) {
   .case__cover img { aspect-ratio: 4 / 3; }
-  .case__split { max-width: 100%; }
 }

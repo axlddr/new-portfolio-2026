@@ -346,7 +346,7 @@
 
       const p = document.createElement('p');
       lines.forEach((line, i) => {
-        if (i > 0) p.appendChild(document.createElement('br'));
+        if (i > 0) p.appendChild(document.createTextNode(' '));
         parseInline(line).forEach(n => p.appendChild(n));
       });
       container.appendChild(p);
@@ -377,8 +377,8 @@
     }
 
     if (p.text) {
-      const desc = el('p', 'hero__desc');
-      desc.textContent = p.text;
+      const desc = el('div', 'hero__desc');
+      renderTextContent(p.text, desc);
       content.appendChild(desc);
     }
 

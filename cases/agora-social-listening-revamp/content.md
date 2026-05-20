@@ -18,7 +18,7 @@ Contexte
 
 [split-title]
 title: Objectifs
-text: Trois objectifs guidaient ce projet :
+text: Trois objectifs guidaient ce projet:
 
 - **Réduire les deals perdus** liés aux lacunes de l'ancien Social Listening, avec un impact direct sur le revenu
 - **Rattraper les solutions concurrentes** sur les fonctionnalités et la couverture des plateformes
@@ -31,10 +31,10 @@ caption: Example de l'interface avant refonte
 
 [split-title]
 title: Pourquoi une refonte ?
-text: Face aux solutions concurrentes, le Social Listening d'Agorapulse montrait clairement ses limites :
+text: Face aux solutions concurrentes, le Social Listening d'Agorapulse montrait clairement ses limites:
 
-- **Couverture limitée :** uniquement les mentions directes et les hashtags Instagram, sans possibilité d'agréger les résultats entre réseaux
-- **Profondeur insuffisante :** moins de réseaux supportés, moins de données, trop peu de fonctionnalités pour répondre aux attentes d'un public professionnel
+- **Couverture limitée:** uniquement les mentions directes et les hashtags Instagram, sans possibilité d'agréger les résultats entre réseaux
+- **Profondeur insuffisante:** moins de réseaux supportés, moins de données, trop peu de fonctionnalités pour répondre aux attentes d'un public professionnel
 
 [block]
 
@@ -43,10 +43,10 @@ Phase de recherche
 
 [split-title]
 title: Analyse du marché et de la concurrence
-text: Pour comprendre où se situait Agorapulse dans l'écosystème, nous avons combiné plusieurs approches :
+text: Pour comprendre où se situait Agorapulse dans l'écosystème, nous avons combiné plusieurs approches:
 
-- **Benchmark concurrentiel :** les solutions concurrentes offraient deux avantages clés absents chez nous : l'analyse de sentiment et la construction de recherches multi-plateformes sur un même écran. Ce benchmark a aussi mis en lumière des erreurs d'expérience à éviter.
-- **Étude de marché :** le State of Social Listening du Social Intelligence Lab nous a permis de mieux situer Agorapulse dans le marché et d'affiner notre positionnement.
+- **Benchmark concurrentiel:** les solutions concurrentes offraient deux avantages clés absents chez nous : l'analyse de sentiment et la construction de recherches multi-plateformes sur un même écran. Ce benchmark a aussi mis en lumière des erreurs d'expérience à éviter.
+- **Étude de marché:** le State of Social Listening du Social Intelligence Lab nous a permis de mieux situer Agorapulse dans le marché et d'affiner notre positionnement.
 
 [image]
 src: useflow.png
@@ -55,11 +55,11 @@ caption: Extrait d'un user-flow simplifié de la feature avant refonte
 
 [split-title]
 title: Compréhension des utilisateurs
-text: En parallèle, nous avons travaillé à mieux comprendre nos utilisateurs actuels et potentiels :
+text: En parallèle, nous avons travaillé à mieux comprendre nos utilisateurs actuels et potentiels:
 
-- **Feedback existant :** analyse des retours d'utilisateurs actuels et de prospects non convertis, complétée par des échanges avec les équipes support et marketing
-- **User flows :** cartographie des parcours existants pour identifier les blocages et les limites de la solution actuelle
-- **Interviews complémentaires :** sessions avec des leads potentiels et des utilisateurs clés pour compléter et challenger nos hypothèses
+- **Feedback existant:** analyse des retours d'utilisateurs actuels et de prospects non convertis, complétée par des échanges avec les équipes support et marketing
+- **User flows:** cartographie des parcours existants pour identifier les blocages et les limites de la solution actuelle
+- **Interviews complémentaires:** sessions avec des leads potentiels et des utilisateurs clés pour compléter et challenger nos hypothèses
 
 [image]
 src: concu.png
@@ -67,7 +67,7 @@ alt: Extrait (anonymisé) de l'analyse de nos concurrents
 caption: Extrait (anonymisé) de l'analyse de nos concurrents
 
 [split-text]
-text: Ces deux axes de recherche ont permis d'identifier quatre besoins principaux :
+text: Ces deux axes de recherche ont permis d'identifier quatre besoins principaux:
 
 - Accéder à des données précises et actionnables sur la santé de la marque
 - Produire des rapports à partir de ces données
@@ -88,11 +88,11 @@ Idéation et conception
 title: Le design sprint
 text: Un design sprint a été organisé avec les parties prenantes clés : Product Manager, Head of Design, Engineering Manager et Product Designer. Impliquer ces profils dès le départ a permis de trancher rapidement sur les pistes à explorer.
 
-Le sprint s'est articulé en trois temps :
+Le sprint s'est articulé en trois temps:
 
-- **Cadrage du MVP :** définition du périmètre autour du besoin principal, la surveillance de la santé de la marque via des données précises
-- **Ateliers de conception :** 6-to-1, card sorting et explorations papier pour converger vers les pistes les plus solides
-- **Wireframing :** une fois l'arborescence validée, exploration en low-fidelity pour poser les bases de la structure des pages
+- **Cadrage du MVP:** définition du périmètre autour du besoin principal, la surveillance de la santé de la marque via des données précises
+- **Ateliers de conception:** 6-to-1, card sorting et explorations papier pour converger vers les pistes les plus solides
+- **Wireframing:** une fois l'arborescence validée, exploration en low-fidelity pour poser les bases de la structure des pages
 
 [image]
 src: wireframes.png
@@ -103,7 +103,7 @@ caption: Examples de wireframes étudiés à différents stades du sprint
 title: Tests d'utilisabilité
 text: Une fois une piste validée en fin de sprint, nous l'avons prototypée et testée suivant un protocole précis, en interne avec les équipes support et marketing, puis en externe avec une dizaine d'utilisateurs réels.
 
-Les résultats étaient solides : 8 utilisateurs sur 10 ont réussi à construire une recherche de façon autonome. Près de la moitié ont cependant bloqué sur une même fonctionnalité, ce qui nous a permis de la retravailler avant la release. Les tests ont aussi fait remonter des besoins pour les prochaines itérations :
+Les résultats étaient solides: 8 utilisateurs sur 10 ont réussi à construire une recherche de façon autonome. Près de la moitié ont cependant bloqué sur une même fonctionnalité, ce qui nous a permis de la retravailler avant la release. Les tests ont aussi fait remonter des besoins pour les prochaines itérations:
 
 - Plus de données disponibles
 - La possibilité d'interagir directement avec les posts depuis l'outil
@@ -127,12 +127,12 @@ caption: L'écran d'accès rapide à toutes les recherches créées par l'utilis
 
 [split-title]
 title: Arbitrages et décisions
-text: Avec un design system solide en place, la phase haute fidélité a avancé rapidement, mais il s'agissait aussi de s'assurer que la fonctionnalité s'intègre sans friction dans un produit existant, tout en posant les bases d'un bon suivi post-lancement.
+text: Avec un design system solide en place, la phase haute fidélité a avancé rapidement, mais il s'agissait aussi de s'assurer que la fonctionnalité s'intègre sans friction dans un produit existant, tout en posant les bases d'un bon suivi post-lancement:
 
-- **Accessibilité :** contrastes, wording clair, lisibilité des données
-- **Design d'interaction :** absent du prototype de test, mais essentiel pour le confort d'utilisation au quotidien
-- **Cohérence produit :** alignement avec les trois autres designers travaillant en parallèle, pour conserver des structures de pages communes
-- **Instrumentation :** définition des éléments à tracker pour assurer un suivi des KPIs dès le lancement
+- **Accessibilité:** contrastes, wording clair, lisibilité des données
+- **Design d'interaction:** absent du prototype de test, mais essentiel pour le confort d'utilisation au quotidien
+- **Cohérence produit:** alignement avec les trois autres designers travaillant en parallèle, pour conserver des structures de pages communes
+- **Instrumentation:** définition des éléments à tracker pour assurer un suivi des KPIs dès le lancement
 
 [image]
 src: search-builder.png
@@ -155,10 +155,10 @@ caption: Example d'un écran haute fidélité pour le dashboard récaputilatif d
 
 [split-title]
 title: Résultats et impact
-text: Quelques semaines après l'ouverture au grand public, les KPIs fixés en amont montraient des résultats encourageants :
+text: Quelques semaines après l'ouverture au grand public, les KPIs fixés en amont montraient des résultats encourageants:
 
-- **Deals perdus** liés aux lacunes du Social Listening : de 5 par mois à 1
-- **Croissance du revenu :** une augmentation constante du nombre de searches créées depuis le lancement, vendues en add-on à l'unité
+- **Deals perdus** liés aux lacunes du Social Listening: de 5 par mois à 1
+- **Croissance du revenu:** une augmentation constante du nombre de searches créées depuis le lancement, vendues en add-on à l'unité
 
 [split-title]
 title: Conclusion
@@ -166,7 +166,7 @@ text: Un projet qui m'a demandé de jongler entre recherche, cadrage stratégiqu
 
 La fonctionnalité a depuis continué d'évoluer, avec l'ajout de l'analyse de sentiment et de l'écoute des blogs et sites de news.
 
-Avec du recul, deux choses que je ferais différemment :
+Avec du recul, deux choses que je ferais différemment:
 
 - **Anticiper les contraintes APIs dès le cadrage**, pour éviter les imprévus en phase de développement
-- **Réduire encore le scope du MVP :** certaines fonctionnalités ont dû être coupées pendant la bêta pour tenir les délais. Partir plus petit aurait permis de lancer plus tôt et d'itérer plus vite.
+- **Réduire encore le scope du MVP:** certaines fonctionnalités ont dû être coupées pendant la bêta pour tenir les délais. Partir plus petit aurait permis de lancer plus tôt et d'itérer plus vite.
