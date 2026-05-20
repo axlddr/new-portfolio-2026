@@ -52,8 +52,8 @@ body {
    TYPOGRAPHY UTILITIES
    ============================================ */
 .accent { color: var(--color-accent); }
-.italic { font-style: italic; font-weight: 500; }
-.bold   { font-weight: 600; }
+.italic { font-style: italic; }
+.bold   { font-weight: 700; }
 
 .label {
   font-family: var(--font-body);

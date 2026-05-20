@@ -103,10 +103,7 @@ caption: Examples de wireframes étudiés à différents stades du sprint
 title: Tests d'utilisabilité
 text: Une fois une piste validée en fin de sprint, nous l'avons prototypée et testée suivant un protocole précis, en interne avec les équipes support et marketing, puis en externe avec une dizaine d'utilisateurs réels.
 
-Les résultats étaient solides: 8 utilisateurs sur 10 ont réussi à construire une recherche de façon autonome. Près de la moitié ont cependant bloqué sur une même fonctionnalité, ce qui nous a permis de la retravailler avant la release. Les tests ont aussi fait remonter des besoins pour les prochaines itérations:
-
-- Plus de données disponibles
-- La possibilité d'interagir directement avec les posts depuis l'outil
+Les résultats étaient solides: 8 utilisateurs sur 10 ont réussi à construire une recherche de façon autonome. Près de la moitié ont cependant bloqué sur une même fonctionnalité, ce qui nous a permis de la retravailler avant la release. Les tests ont aussi fait remonter des besoins pour les prochaines itérations: plus de données disponibles et la possibilité d'interagir directement avec les posts depuis l'outil
 
 [image]
 src: prototype.png
@@ -166,7 +163,4 @@ text: Un projet qui m'a demandé de jongler entre recherche, cadrage stratégiqu
 
 La fonctionnalité a depuis continué d'évoluer, avec l'ajout de l'analyse de sentiment et de l'écoute des blogs et sites de news.
 
-Avec du recul, deux choses que je ferais différemment:
-
-- **Anticiper les contraintes APIs dès le cadrage**, pour éviter les imprévus en phase de développement
-- **Réduire encore le scope du MVP:** certaines fonctionnalités ont dû être coupées pendant la bêta pour tenir les délais. Partir plus petit aurait permis de lancer plus tôt et d'itérer plus vite.
+Avec du recul, deux choses que je ferais différemment: anticiper les contraintes APIs dès le cadrage, pour éviter les imprévus en phase de développement et réduire encore le scope du MVP car certaines fonctionnalités ont dû être coupées pendant la bêta pour tenir les délais.

@@ -332,7 +332,9 @@
       const lines = trimmed.split('\n').map(l => l.trim()).filter(Boolean);
 
       if (lines.every(l => l.startsWith('- '))) {
-        const ul = el('ul', 'case__list');
+        const count = lines.length;
+        const cols  = count === 3 ? 3 : count >= 2 ? 2 : 1;
+        const ul    = el('ul', 'case__list case__list--cols-' + cols);
         lines.forEach(l => {
           const li = document.createElement('li');
           const span = document.createElement('span');
