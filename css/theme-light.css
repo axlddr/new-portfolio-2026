@@ -1,0 +1,15 @@
+/* ============================================
+   LIGHT MODE TOKENS — backup only, not linked.
+   Re-link in tokens.css :root to restore light mode.
+   ============================================ */
+
+/*
+:root {
+  --color-bg:            #E8E5E1;
+  --color-accent:        #9F181A;
+  --color-ink:           #303030;
+  --color-ink-secondary: #595858;
+  --color-ink-label:     #676767;
+  --color-border:        #bdbdbd;
+}
+*/

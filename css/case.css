@@ -16,7 +16,7 @@
   border: none;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 64px;
 }
 
 /* Padding: 80px top, 64px bottom — defines header height */
@@ -30,11 +30,6 @@
   width: 100%;
   height: auto;
   border-radius: 4px;
-}
-
-/* Hero description text width */
-.frame--case .hero__desc {
-  max-width: 680px;
 }
 
 /* ----------------------------------------
@@ -167,26 +162,24 @@
 .lightbox__close:hover { opacity: 1; }
 
 /* ----------------------------------------
-   SPLIT LAYOUT  —  1fr  |  2fr
+   SPLIT LAYOUT  — vertical stack, 700px wide
    Used by [split-title] and [split-text]
    ---------------------------------------- */
 .case__split {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-
-.case__split-left {
-  padding-right: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
+  max-width: 700px;
 }
 
 .case__split-right {
   font-size: var(--fs-text);
-  line-height: 1.25;
+  line-height: var(--lh-text);
   color: var(--color-ink-secondary);
   display: flex;
   flex-direction: column;
   gap: var(--sp-16);
-  max-width: 680px;
+  width: 100%;
 }
 
 /* ----------------------------------------
@@ -204,9 +197,77 @@
 }
 
 .case__list li::before {
-  content: "—";
-  color: var(--color-accent);
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-ink);
   flex-shrink: 0;
+  margin-top: 0.45em;
+}
+
+/* ----------------------------------------
+   FLOATING TOC
+   Lives as first child of <main>.
+   On wide viewports: <main> becomes a 3-col grid —
+   TOC in left col (sticky), container in center col.
+   Hidden on narrow screens.
+   ---------------------------------------- */
+
+/* Default: hidden */
+.case-toc { display: none; }
+
+@media (min-width: 1480px) {
+  /* Make <main> a 3-column grid when TOC is present */
+  main.has-toc {
+    display: grid;
+    grid-template-columns: 1fr min(var(--container-md), 100%) 1fr;
+  }
+
+  /* Keep the content container in the center column */
+  main.has-toc > .container {
+    grid-column: 2;
+  }
+
+  /* TOC: sticky, anchored to the right edge of the left column */
+  .case-toc {
+    display: block;
+    grid-column: 1;
+    justify-self: end;
+    position: sticky;
+    top: 48px;
+    height: fit-content;
+    align-self: start;
+    width: 300px;
+    padding-right: 32px;
+    padding-top: 64px; /* align with .frame padding */
+  }
+}
+
+.case-toc__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-24);
+}
+
+.case-toc__link {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-ink-label);
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+  transition: color 150ms ease;
+}
+
+.case-toc__link:hover {
+  color: var(--color-ink);
+}
+
+.case-toc__link.is-active {
+  color: var(--color-ink);
+  font-weight: 600;
 }
 
 /* ----------------------------------------
@@ -214,11 +275,5 @@
    ---------------------------------------- */
 @media (max-width: 820px) {
   .case__cover img { aspect-ratio: 4 / 3; }
-
-  .case__split { grid-template-columns: 1fr; }
-  .case__split-left {
-    border-right: none;
-    border-bottom: var(--border);
-    padding-bottom: var(--sp-24);
-  }
+  .case__split { max-width: 100%; }
 }

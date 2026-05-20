@@ -1,0 +1,15 @@
+/* ============================================
+   DARK MODE TOKENS
+   Applied when <html data-theme="dark">.
+   Loaded on every page alongside tokens.css.
+   ============================================ */
+[data-theme="dark"] {
+  --color-bg:            #151515;
+  --color-accent:        #C42124;
+  --color-ink:           #E8E5E1;
+  --color-ink-secondary: #9A9794;
+  --color-ink-label:     #6B6866;
+  --color-border:        #333130;
+
+  --noise-opacity: 0;
+}

@@ -2,7 +2,7 @@
    NOISE OVERLAY  — z 0, below grid and content
    ============================================ */
 :root {
-  --noise-opacity: 0.6;
+  --noise-opacity: 0.1;
   --noise-size: 250px;
 }
 

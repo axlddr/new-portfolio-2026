@@ -11,10 +11,11 @@
   const zone = document.querySelector('[data-cursor-zone]');
   if (!zone) return;
 
-  const CELL          = 24;    // tile size in CSS px
+  const CELL          = 8;     // tile size in CSS px
   const GAP           = 1;     // gap between tiles
-  const BR            = 4;     // border-radius
-  const HOT_RADIUS    = 200;   // influence radius in px
+  const BR            = 1;     // border-radius
+  const HOT_LERP      = 0.07;  // hot-spot tracking speed (lower = more lag)
+  const HOT_RADIUS    = 80;    // influence radius in px
   const ON_MAX_DELAY  = 300;   // ms — max stagger on turn-on
   const OFF_MAX_DELAY = 2500;  // ms — max stagger on turn-off
 
@@ -76,8 +77,10 @@
   }
 
   /* ── Mouse state ─────────────────────────── */
-  let mouseX = null;
+  let mouseX = null;   // actual cursor position (zone-relative)
   let mouseY = null;
+  let hotX   = null;   // lagged hot-spot position (lerped each frame)
+  let hotY   = null;
   let rafId  = null;
 
   /* ── Render loop ─────────────────────────── */
@@ -89,6 +92,13 @@
     const [r, g, b] = rgb;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Lerp hot-spot toward real cursor — creates trailing delay
+    if (mouseX !== null) {
+      if (hotX === null) { hotX = mouseX; hotY = mouseY; }
+      hotX += (mouseX - hotX) * HOT_LERP;
+      hotY += (mouseY - hotY) * HOT_LERP;
+    }
+
     let needsNextFrame = false;
 
     for (let row = 0; row < rows; row++) {
@@ -96,34 +106,42 @@
         const i = row * cols + col;
         let alpha = liveAlpha[i];
 
-        if (mouseX !== null) {
-          /* Mouse in zone — compute distance-based target, apply tile noise */
+        /* ── Trigger: cursor sweeps over a dark, idle tile ── */
+        if (mouseX !== null && alpha < 0.005 && !onDelayEnd[i] && !fadeStartAt[i]) {
           const cx = col * CELL + CELL / 2;
           const cy = row * CELL + CELL / 2;
-          const d  = Math.sqrt((cx - mouseX) ** 2 + (cy - mouseY) ** 2);
+          const d  = Math.sqrt((cx - hotX) ** 2 + (cy - hotY) ** 2);
           const t  = Math.max(0, 1 - d / HOT_RADIUS);
-          const target = t * t * t * tileNoise[i]; // per-tile shade variation
-
-          if (target > 0 && alpha < 0.005) {
-            /* Tile is off and entering range — apply on-delay */
-            if (!onDelayEnd[i]) onDelayEnd[i] = now + Math.random() * ON_MAX_DELAY;
-            if (now < onDelayEnd[i]) { liveAlpha[i] = 0; continue; }
-          } else if (!target || alpha >= 0.005) {
-            onDelayEnd[i] = 0; // lit or out of range — clear pending delay
-          }
-
-          alpha += (target - alpha) * (alpha < target ? 0.40 : 0.15);
-
-        } else {
-          /* Mouse gone — per-tile random decay rate + random start delay */
-          onDelayEnd[i] = 0;
-          if (now >= fadeStartAt[i]) {
-            alpha *= decayRate[i]; // each tile fades at its own speed
+          /* Probability drops as t³ — center tiles almost always trigger,
+             edge tiles rarely do, giving a natural soft boundary */
+          if (t > 0 && Math.random() < t * t * t * t * t) {
+            onDelayEnd[i] = now + Math.random() * ON_MAX_DELAY;
           }
         }
 
-        liveAlpha[i] = alpha;
-        if (alpha < 0.006) { liveAlpha[i] = 0; continue; }
+        /* ── Fire: on-delay expired → snap to peak, start fade timer ── */
+        if (onDelayEnd[i]) {
+          if (now < onDelayEnd[i]) {
+            needsNextFrame = true; // still waiting — keep loop alive
+            continue;
+          }
+          alpha = tileNoise[i];   // peak brightness (per-tile variation)
+          onDelayEnd[i]  = 0;
+          fadeStartAt[i] = now + Math.random() * OFF_MAX_DELAY;
+        }
+
+        /* ── Fade: every lit tile decays on its own schedule ── */
+        if (alpha > 0.005) {
+          if (!fadeStartAt[i]) fadeStartAt[i] = now; // safety
+          if (now >= fadeStartAt[i]) alpha *= decayRate[i];
+        }
+
+        liveAlpha[i] = alpha < 0.006 ? 0 : alpha;
+        if (liveAlpha[i] < 0.006) {
+          liveAlpha[i]  = 0;
+          fadeStartAt[i] = 0; // fully dark — tile can be triggered again
+          continue;
+        }
         needsNextFrame = true;
 
         /* Bucket by quantised alpha — one draw call per bucket */
@@ -171,16 +189,12 @@
       if (!inZone) inZone = true;
       startLoop();
     } else if (inZone) {
-      /* Cursor genuinely left the zone — start staggered fade */
+      /* Cursor genuinely left the zone — tiles already have their own fade timers */
       inZone = false;
-      const now = performance.now();
-      for (let i = 0; i < liveAlpha.length; i++) {
-        if (liveAlpha[i] > 0.005) {
-          fadeStartAt[i] = now + Math.random() * OFF_MAX_DELAY;
-        }
-      }
       mouseX = null;
       mouseY = null;
+      hotX   = null;
+      hotY   = null;
       startLoop();
     }
   }, { passive: true });

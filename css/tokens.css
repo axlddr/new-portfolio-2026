@@ -1,30 +1,29 @@
 /* ============================================
    DESIGN TOKENS
-   Edit colours here to retheme the whole site.
-   ── Light is the default (applied on :root).
-   ── Dark is applied when <html data-theme="dark">.
+   Dark mode only. Light mode backup in theme-light.css.
    ============================================ */
 
-/* ── Light ─────────────────────────────────── */
 :root {
-  --color-bg:            #E8E5E1;
-  --color-accent:        #9F181A;
+  --color-bg:            #151515;
+  --color-accent:        #c32f32;
   --color-accent-subtle: color-mix(in srgb, var(--color-accent) 12%, var(--color-bg));
-  --color-ink:           #303030;
-  --color-ink-secondary: #595858;
-  --color-ink-label:     #676767;
-  --color-border:        #bdbdbd;
+  --color-ink:           #E8E5E1;
+  --color-ink-secondary: #c4c4c4;
+  --color-ink-label:     #7b7b7b;
+  --color-border:        #333130;
+
+  --noise-opacity: 0;
 
   --font-body: 'Geist', system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --fs-label: 13px;
-  --fs-text:  15px;
-  --fs-h3:    18px;
+  --fs-label: 14px;
+  --fs-text:  16px;
+  --fs-h3:    20px;
   --fs-h2:    24px;
   --fs-h1:    30px;
 
-  --lh-text: 1.30;
+  --lh-text: 1.4;
 
   --sp-4:  4px;
   --sp-8:  8px;
@@ -41,14 +40,3 @@
   --border: 1px solid var(--color-border);
 }
 
-/* ── Dark ──────────────────────────────────── */
-[data-theme="dark"] {
-  --color-bg:            #1C1A18;
-  --color-accent:        #C42124;
-  --color-ink:           #E8E5E1;
-  --color-ink-secondary: #9A9794;
-  --color-ink-label:     #6B6866;
-  --color-border:        #333130;
-
-  --noise-opacity: 0;
-}

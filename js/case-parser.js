@@ -177,6 +177,9 @@
      RENDERER
      ========================================== */
 
+  // Sections collected during render — used to build the TOC
+  const tocSections = [];
+
   function render(groups, contentMount, heroMount, coverMount) {
     groups.forEach(group => {
       if (group.type === 'case') {
@@ -192,6 +195,9 @@
       });
       contentMount.appendChild(blockEl);
     });
+
+    // Build TOC once all sections are known
+    if (tocSections.length >= 2) buildToc(tocSections);
   }
 
   /* ── Item renderers ── */
@@ -211,6 +217,13 @@
   /** [section] → .section-head with top border + brand mark */
   function renderSection(p) {
     const head = el('div', 'section-head');
+
+    // Anchor ID from slugified title — used by the TOC
+    const id = slugify(p.title || '');
+    if (id) {
+      head.id = id;
+      tocSections.push({ title: p.title || '', id });
+    }
 
     const h = el('h2', 'h3');
     h.textContent = p.title || '';
@@ -283,10 +296,31 @@
   }
 
   /**
+   * Parse inline **bold** markers into an array of DOM nodes.
+   * Plain text → TextNode, **wrapped** text → <span class="bold">.
+   */
+  function parseInline(text) {
+    const nodes = [];
+    text.split(/\*\*(.*?)\*\*/g).forEach(function (part, i) {
+      if (!part) return;
+      if (i % 2 === 1) {
+        const s = document.createElement('span');
+        s.className = 'bold';
+        s.textContent = part;
+        nodes.push(s);
+      } else {
+        nodes.push(document.createTextNode(part));
+      }
+    });
+    return nodes;
+  }
+
+  /**
    * Render rich text into a container element.
    * Blank lines         → paragraph break
    * Lines starting "- " → bullet list
    * Single newlines     → <br> within the same paragraph
+   * **text**            → <strong>
    */
   function renderTextContent(text, container) {
     const blocks = text.split(/\n{2,}/);
@@ -301,7 +335,9 @@
         const ul = el('ul', 'case__list');
         lines.forEach(l => {
           const li = document.createElement('li');
-          li.textContent = l.slice(2).trim();
+          const span = document.createElement('span');
+          parseInline(l.slice(2).trim()).forEach(n => span.appendChild(n));
+          li.appendChild(span);
           ul.appendChild(li);
         });
         container.appendChild(ul);
@@ -311,7 +347,7 @@
       const p = document.createElement('p');
       lines.forEach((line, i) => {
         if (i > 0) p.appendChild(document.createElement('br'));
-        p.appendChild(document.createTextNode(line));
+        parseInline(line).forEach(n => p.appendChild(n));
       });
       container.appendChild(p);
     });
@@ -366,8 +402,88 @@
   }
 
   /* ==========================================
+     TABLE OF CONTENTS
+     ========================================== */
+
+  function buildToc(sections) {
+    const main = document.querySelector('main');
+    if (!main) return;
+
+    const nav = el('nav', 'case-toc');
+    nav.setAttribute('aria-label', 'Table des matières');
+
+    const ul = el('ul', 'case-toc__list');
+    sections.forEach(({ title, id }) => {
+      const li = document.createElement('li');
+      const a  = document.createElement('a');
+      a.href       = '#' + id;
+      a.className  = 'case-toc__link';
+      a.textContent = title;
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    nav.appendChild(ul);
+
+    // Inject as first child of <main> so sticky works within the scroll flow
+    main.insertBefore(nav, main.firstChild);
+    main.classList.add('has-toc');
+
+    // ── Scroll-spy via IntersectionObserver ──
+    const links    = Array.from(nav.querySelectorAll('.case-toc__link'));
+    const headings = sections.map(s => document.getElementById(s.id)).filter(Boolean);
+    let activeId      = null;
+    let suppressSpy   = false;  // true while a click-triggered scroll is animating
+    let suppressTimer = null;
+
+    function setActive(id) {
+      if (id === activeId) return;
+      activeId = id;
+      links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + id));
+    }
+
+    const observer = new IntersectionObserver(function () {
+      if (suppressSpy) return; // ignore observer fires during smooth scroll
+      let found = null;
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= window.innerHeight * 0.3) found = h;
+        else break;
+      }
+      setActive(found ? found.id : (headings[0] ? headings[0].id : null));
+    }, { rootMargin: '0px 0px -65% 0px', threshold: 0 });
+
+    headings.forEach(function (h) { observer.observe(h); });
+
+    // ── Smooth scroll with 64px breathing room above target ──
+    nav.addEventListener('click', function (e) {
+      const a = e.target.closest('.case-toc__link');
+      if (!a) return;
+      e.preventDefault();
+      const target = document.getElementById(a.getAttribute('href').slice(1));
+      if (!target) return;
+
+      // Immediately mark the clicked item as active and freeze the spy
+      setActive(a.getAttribute('href').slice(1));
+      suppressSpy = true;
+      clearTimeout(suppressTimer);
+      suppressTimer = setTimeout(function () { suppressSpy = false; }, 900);
+
+      const top = target.getBoundingClientRect().top + window.scrollY - 64;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  }
+
+  /* ==========================================
      HELPERS
      ========================================== */
+
+  function slugify(str) {
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '') // strip accents
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
 
   function resolveImage(value) {
     if (!value) return '';
